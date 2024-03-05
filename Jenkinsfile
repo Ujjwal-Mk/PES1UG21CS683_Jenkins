@@ -1,32 +1,26 @@
-pipeline {
+pipeline{
   agent any
-  stages {
-    stage ('Build') {
-      steps {
-        sh 'g++ -o myExecutable working.cpp' 
-        echo 'Build Stage Successful'
+  stages{
+    stage("Build"){
+      steps{
+        build 'PES1UG21CS683-1'
+        sh 'g++ working.cpp -o working'
       }
     }
-    stage('Test') {
-      steps {
-        sh './myExecutable' 
-        echo 'Test Stage Successful'
-        post {
-          always {
-            junit 'target/surefire-reports/*.xml'
-          }
-        }
+    stage("Test"){
+      steps{
+        sh './working'
       }
     }
-    stage ('Deploy') {
-      steps { 
-        echo 'Deployment successful'
+    stage("Deploy"){
+      steps{
+        echo 'Deploy'
       }
     }
   }
-  post {
-    failure {
-      echo 'Pipeline failed'
+  post{
+    failure{
+      error 'Pipeline failed'
     }
   }
 }
