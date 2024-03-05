@@ -3,7 +3,7 @@ pipeline{
   stages{
     stage("Build"){
       steps{
-        build-error-here 'PES1UG21CS683-1'
+        build 'PES1UG21CS683-1'
         sh 'g++ working.cpp -o working'
       }
     }
@@ -14,7 +14,7 @@ pipeline{
     }
     stage("Deploy"){
       steps{
-        echo 'Deploy'
+        echo-error-here 'Deploy'
       }
     }
   }
