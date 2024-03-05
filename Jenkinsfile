@@ -14,7 +14,8 @@ pipeline{
     }
     stage("Deploy"){
       steps{
-        echo-error-here 'Deploy'
+        sh './working1234'
+        echo 'Deploy'
       }
     }
   }
